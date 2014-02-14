@@ -18,7 +18,7 @@ class School(models.Model):
         verbose_name = _("school")
         verbose_name_plural = _("schools")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 class Formation(models.Model):
@@ -34,7 +34,7 @@ class Formation(models.Model):
         verbose_name = _("formation")
         verbose_name_plural = _("formations")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 class Promotion(models.Model):
@@ -48,6 +48,6 @@ class Promotion(models.Model):
         verbose_name = _("promotion")
         verbose_name_plural = _("promotions")
 
-    def __unicode__(self):
+    def __str__(self):
         return "Promotion %(self.year)i of %(self.formation.name)" % self
 
