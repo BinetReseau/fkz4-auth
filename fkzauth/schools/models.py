@@ -28,7 +28,7 @@ class Formation(models.Model):
     name = models.CharField(max_length=80,verbose_name=_("Name"))
     hruid = models.SlugField(max_length=20, unique=True, verbose_name=_("Unique slug identifier"))
     description = models.TextField(verbose_name=_("Description"))
-    school = models.ForeignKey(School, verbose_name=_("Related school"))
+    school = models.ForeignKey(School, related_name='formations', verbose_name=_("Related school"))
 
     class Meta:
         verbose_name = _("formation")
@@ -42,9 +42,12 @@ class Promotion(models.Model):
     A promotion of a Formation.
     """
     year = models.IntegerField(verbose_name=_("Year"))
-    formation = models.ForeignKey(Formation, verbose_name=_("Related formation"))
+    formation = models.ForeignKey(Formation, related_name='promotions', verbose_name=_("Related formation"))
 
     class Meta:
         verbose_name = _("promotion")
         verbose_name_plural = _("promotions")
+
+    def __unicode__(self):
+        return "Promotion %(self.year)i of %(self.formation.name)" % self
 
