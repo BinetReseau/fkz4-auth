@@ -37,6 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'south',
+# fkz app
+    'fkzauth.schools',
 )
 
 MIDDLEWARE_CLASSES = (

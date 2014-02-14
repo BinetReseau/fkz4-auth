@@ -1,0 +1,65 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-02-14 11:02+0100\n"
+"PO-Revision-Date: 2014-02-14 11:02+0100\n"
+"Last-Translator: Victor Berger <victor.berger@m4x.org>\n"
+"Language-Team: Binet Reseau <dev@frankiz.net>\n"
+"Language: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: schools/models.py:12 schools/models.py:28
+msgid "Name"
+msgstr "Nom"
+
+#: schools/models.py:13 schools/models.py:29
+msgid "Unique slug identifier"
+msgstr "Identifiant URL"
+
+#: schools/models.py:14
+msgid "Email suffix of the school"
+msgstr "Suffixe email de l'école"
+
+#: schools/models.py:15 schools/models.py:30
+msgid "Description"
+msgstr "Description"
+
+#: schools/models.py:18
+msgid "school"
+msgstr "école"
+
+#: schools/models.py:19
+msgid "schools"
+msgstr "écoles"
+
+#: schools/models.py:31
+msgid "Related school"
+msgstr "École associée"
+
+#: schools/models.py:34
+msgid "formation"
+msgstr "formation"
+
+#: schools/models.py:35
+msgid "formations"
+msgstr "formations"
+
+#: schools/models.py:44
+msgid "Year"
+msgstr "Année"
+
+#: schools/models.py:45
+msgid "Related formation"
+msgstr "Formation associée"
+
+#: schools/models.py:48
+msgid "promotion"
+msgstr "promotion"
+
+#: schools/models.py:49
+msgid "promotions"
+msgstr "promotions"
