@@ -48,6 +48,10 @@ INSTALLED_APPS = (
 # Using custom user model for authentification
 AUTH_USER_MODEL = 'students.Student'
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'fkzauth.students.backends.StudentBackend',
+)
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
