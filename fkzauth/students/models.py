@@ -48,7 +48,7 @@ class Student(AbstractBaseUser):
     """
     Class representing a Student, used for authentication.
     """
-    firstname = models.CharField(max_length=50, verbose_name=_("fristname"))
+    firstname = models.CharField(max_length=50, verbose_name=_("firstname"))
     lastname = models.CharField(max_length=50, vebose_name=_("lastname"))
     email = models.EmailField(max_length=254, verbose_name=_("email"), unique=True)
     
