@@ -67,12 +67,32 @@ class Student(AbstractBaseUser):
 
     objects = StudentManager()
 
+    def get_full_name(self):
+        # The user is identified by their email address
+        return "%(self.firstame) %(self.lastname)<%(self.email)>"
+
+    def get_short_name(self):
+        # The user is identified by their email address
+        return "%(self.firstame) %(self.lastname)"
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+    
+    
     class Meta:
         verbose_name = _("student")
         verbose_name_plural = _("students")
 
-    def __self__(self):
+    def __str__(self):
         return "%(self.firstname) %(self.lastname)" % self
+    
 
 class SchoolAuth(models.Model):
     """
