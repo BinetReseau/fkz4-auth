@@ -9,7 +9,7 @@ class StudentBackend(object):
         """ Authenticates a student using its email and school """
     
         try:
-            student = Student.StudentManager.select_related('promotion__formation__school').get(forlife_schools__forlife=forlife).get(promotions__formation__school__pk=school_id)
+            student = Student.objects.select_related('promotion__formation__school').get(schoolauth__forlife=forlife,promotions__formation__school__pk=school_id)
             # select_related is used for performance reasons
             
             if student.check_password(password):
