@@ -37,6 +37,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'south',
+#OAuth
+    'oauth2_provider',
 # fkz app
     'fkzauth.schools',
     'fkzauth.students',
