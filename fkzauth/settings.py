@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'south',
 #OAuth
     'oauth2_provider',
+    'rest_framework',
 # fkz app
     'fkzauth.schools',
     'fkzauth.students',
@@ -96,3 +97,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+OAUTH2_PROVIDER = {
+    'SCOPES': {'read': 'Read scope'},
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES' : (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}

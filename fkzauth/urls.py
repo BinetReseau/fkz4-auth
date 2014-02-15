@@ -11,4 +11,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     #OAuth
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    #API
+    url(r'^api/', include('fkzauth.api.urls', namespace='api')),
 )
