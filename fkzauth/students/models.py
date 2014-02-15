@@ -69,11 +69,11 @@ class Student(AbstractBaseUser):
 
     def get_full_name(self):
         # The user is identified by their email address
-        return "%(self.firstame) %(self.lastname)<%(self.email)>"
+        return "%s %s <%s>" % (self.firstname, self.lastname, self.email)
 
     def get_short_name(self):
         # The user is identified by their email address
-        return "%(self.firstame) %(self.lastname)"
+        return "%s %s" % (self.firstname, self.lastname, self.email)
 
     def has_perm(self, perm, obj=None):
         "Does the user have a specific permission?"
@@ -91,7 +91,7 @@ class Student(AbstractBaseUser):
         verbose_name_plural = _("students")
 
     def __str__(self):
-        return "%(self.firstname) %(self.lastname)" % self
+        return "%s %s" % (self.firstname, self.lastname)
     
 
 class SchoolAuth(models.Model):
@@ -108,5 +108,5 @@ class SchoolAuth(models.Model):
         unique_together = ('school','forlife')
 
     def __str__(self):
-        return "%(self.forlife)@%(self.school.suffix)" % self
+        return "%s@%s" % (self.forlife, self.school.suffix)
 

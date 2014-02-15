@@ -49,5 +49,5 @@ class Promotion(models.Model):
         verbose_name_plural = _("promotions")
 
     def __str__(self):
-        return "Promotion %(self.year)i of %(self.formation.name)" % self
+        return "Promotion %i of %s" % (self.year, self.formation.name)
 
