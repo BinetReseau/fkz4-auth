@@ -43,7 +43,7 @@ help:
 # Running
 # =======
 
-run: static compilemessages
+run: static compilemsg
 	$(MANAGE_PY) runserver $(RUN_OPTIONS) 8000
 
 shell:
