@@ -39,7 +39,13 @@ INSTALLED_APPS = (
     'south',
 # fkz app
     'fkzauth.schools',
+    'fkzauth.students',
 )
+
+
+# Using custom user model for authentification
+AUTH_USER_MODEL = 'students.Student'
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
