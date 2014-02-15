@@ -6,3 +6,4 @@ static/*
 db.sqlite3
 *.swp
 *.mo
+*~

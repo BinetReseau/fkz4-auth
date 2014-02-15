@@ -1,8 +1,48 @@
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 
 from fkzauth.schools.models import School, Promotion
+
+
+class StudentManager(BaseUserManager):
+    """
+    Class managing students
+    """
+    def create_user(self, firstname, lastname, email, promotions, forlife_schools, password):
+        """
+        Creates and saves the student identification informations
+        """
+        student = self.model(
+            firstname=firstname,
+            lastname=lastname,
+            email=self.normalize_email(email),
+            promotions=promotions,
+            forlife_schools=forlife_schools
+            )
+        
+        student.set_password(password)
+        student.save(using=self._db)
+        
+        return student
+        
+    def create_super_user(self, firstname, lastname, email, promotions, forlife_schools, password):
+        """
+        Creates and saves the infrormations about a superuser (= admin)
+        """
+        student = self.model(
+            firstname=firstname,
+            lastname=lastname,
+            email=self.normalize_email(email),
+            promotions=promotions,
+            forlife_schools=forlife_schools
+            )
+            
+        student.set_password(password)
+        student.is_staff = True
+        student.save(using=self._db)
+        
+        return student
 
 class Student(AbstractBaseUser):
     """
@@ -11,6 +51,10 @@ class Student(AbstractBaseUser):
     firstname = models.CharField(max_length=50, verbose_name=_("fristname"))
     lastname = models.CharField(max_length=50, vebose_name=_("lastname"))
     email = models.EmailField(max_length=254, verbose_name=_("email"), unique=True)
+    
+    #Fields needed to be compatible with the Admin interface
+    is_staff = models.BooleanField(default=False, verbose_name=_("staff member"))
+    is_active = models.BooleanField(default=True, verbose_name=_("active account"))
 
     USERNAME_FIELD = 'email'
 
@@ -20,6 +64,8 @@ class Student(AbstractBaseUser):
 
     forlife_schools = models.ManyToManyField(School, related_name='student_auths', 
                     through='SchoolAuth', verbose_name=_("institutional emails for authentication"))
+
+    objects = StudentManager()
 
     class Meta:
         verbose_name = _("student")
