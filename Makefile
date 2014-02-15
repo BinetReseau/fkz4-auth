@@ -77,7 +77,7 @@ prepare: compilemsg static
 
 resetdb:
 	rm -f db.sqlite3
-	$(MANAGE_PY) syncdb $(MANAGE_OPTIONS)
+	$(MANAGE_PY) syncdb $(MANAGE_OPTIONS) --migrate
 
 migratedb:
 	$(MANAGE_PY) migrate $(MANAGE_OPTIONS) --merge
