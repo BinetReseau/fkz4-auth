@@ -22,6 +22,7 @@ class StudentManager(BaseUserManager):
         student.promotions.add(promotion)
         student.save(using=self._db)
         sauth = SchoolAuth(student=student, school=promotion.formation.school, forlife=forlife)
+        sauth.save()
         student.set_password(password)
         student.save(using=self._db)
         
