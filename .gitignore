@@ -5,3 +5,4 @@ local_settings.py
 static/*
 db.sqlite3
 *.swp
+*.mo
