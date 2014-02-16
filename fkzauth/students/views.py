@@ -56,11 +56,6 @@ class LoginView(View):
         next = request.POST.get('next', '/')
         if form.is_valid():
             formdat = form.cleaned_data
-            
-                
-            # authenticate() checks the parameters, and "next" is not used by the
-            # authentication backend
-            formdat.pop('next', None) 
             student = authenticate(**formdat)
             if student is not None: # the user has been succesfully authenticated
                 if student.is_active:

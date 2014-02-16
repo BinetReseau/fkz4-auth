@@ -7,7 +7,7 @@ from fkzauth.students.models import Student
 
 
 class StudentBackend(object):
-    def authenticate(self, forlife, school_id, password):
+    def authenticate(self, forlife, school_id, password, *args, **kwargs):
         """ Authenticates a student using its email and school """
         try:
             student = Student.objects.select_related('schoolauth__school').get(schoolauth__forlife=forlife,schoolauth__school__pk=school_id)
