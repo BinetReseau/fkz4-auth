@@ -1,4 +1,10 @@
 {% load i18n %}
+
+{% if message %}
+<div>
+{{ message }}
+</div>
+{% endif %}
 <form method="post" action="">
 {% csrf_token %}
 {{ form.as_p }}
@@ -6,7 +12,7 @@
 </form>
 <br />
 {% if mode == "email" %}
-<a href="/login/">{% trans "Authenticate via my school forlife id." %}</a>
+<a href="/login/?next={{ next }}">{% trans "Authenticate via my school forlife id." %}</a>
 {% else %}
-<a href="/login/email/">{% trans "Authenticate via my personal email" %}</a>
+<a href="/login/email/?next={{ next }}">{% trans "Authenticate via my personal email" %}</a>
 {% endif %}
