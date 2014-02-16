@@ -38,6 +38,13 @@ class StudentManager(BaseUserManager):
         
         return student
 
+
+# to authenticate a Student, call 
+# authenticate(email='email', password='password')
+# to use the  django base authentication backend, or 
+# authenticate(forlife='forlife', school_id=school_id, password='password')
+# to use the custom authentication backend
+
 class Student(AbstractBaseUser):
     """
     Class representing a Student, used for authentication.

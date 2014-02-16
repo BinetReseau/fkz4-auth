@@ -13,4 +13,6 @@ urlpatterns = patterns('',
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     #API
     url(r'^api/', include('fkzauth.api.urls', namespace='api')),
+    #Login
+    url(r'^login/', include('fkzauth.students.urls', namespace='login')),
 )

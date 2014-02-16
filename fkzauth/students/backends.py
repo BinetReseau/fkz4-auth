@@ -4,12 +4,13 @@ from django.contrib.auth.hashers import make_password
 from fkzauth.schools.models import School, Promotion
 from fkzauth.students.models import Student
 
+
+
 class StudentBackend(object):
     def authenticate(self, forlife, school_id, password):
         """ Authenticates a student using its email and school """
-    
         try:
-            student = Student.objects.select_related('promotion__formation__school').get(schoolauth__forlife=forlife,promotions__formation__school__pk=school_id)
+            student = Student.objects.select_related('schoolauth__school').get(schoolauth__forlife=forlife,schoolauth__school__pk=school_id)
             # select_related is used for performance reasons
             
             if student.check_password(password):
@@ -24,7 +25,7 @@ class StudentBackend(object):
     def get_user(self, user_id):
         
         try:
-            return Student.StudentManager.get(pk=user_id)
+            return Student.objects.get(pk=user_id)
         except Student.DoesNotExist:
             return None
         

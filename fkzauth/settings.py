@@ -50,9 +50,11 @@ INSTALLED_APPS = (
 AUTH_USER_MODEL = 'students.Student'
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
     'fkzauth.students.backends.StudentBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
+
+LOGIN_URL='/login/'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -97,6 +99,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, 'templates'),
+    
+)
+
 
 OAUTH2_PROVIDER = {
     'SCOPES': {'read': 'Read scope'},
