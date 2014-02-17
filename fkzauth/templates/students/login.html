@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    {% if message %}
+    <div>
+        {{ message }}
+    </div>
+    {% endif %}
+
+    <form method="post" action="">{% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{% trans "Login" %}" /> 
+    </form>
+    <br />
+    {% if mode == "email" %}
+        <a href="/login/?next={{ next|urlencode }}">{% trans "Authenticate via my school forlife id." %}</a>
+    {% else %}
+        <a href="/login/email/?next={{ next|urlencode }}">{% trans "Authenticate via my personal email" %}</a>
+    {% endif %}
+{% endblock %}
+
