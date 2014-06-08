@@ -32,7 +32,7 @@ class GroupMember(models.Model):
     """
     A member of a group (used in a M2M relation)
     """
-    STATUS_CHOICES = ( ("sym", _("sympathizer")), ("mem", _("member")), ("adm", _("administrator")))
+    STATUS_CHOICES = ( ("sym", _("sympathizer")), ("mem", _("member")))
 
     student = models.ForeignKey("students.Student",verbose_name=_("Student"))
     group = models.ForeignKey("Group", verbose_name=_("Group"))
@@ -43,6 +43,24 @@ class GroupMember(models.Model):
     class Meta:
         verbose_name = _("Membership relation")
         verbose_name_plural = _("Membership relations")
-
+        unique_together = ("student", "group")
     def __str__(self):
         return "%s -> %s " % (self.student, self.group)
+
+
+class GroupRole(models.Model):
+    """
+    The roles a member of a group can have
+    """
+
+    ROLE_CHOICES = ( ("adm", _("administrator")), ("web", _("webmaster")), ("mail", _("mailing-list")), ("mem", _("member selection")), ("ann", _("announcements")))
+
+    group_member = models.ForeignKey(GroupMember, verbose_name=_("Membership"), related_name="Roles")
+    role = models.CharField(max_length=4, choices=ROLE_CHOICES, verbose_name=_("Role"))
+
+    class Meta:
+        verbose_name = _("Groupe role")
+        verbose_name_plural = ("Groupe roles")
+        unique_together = ('group_member', 'role',)
+    def __str__(self):
+        return "%s  : %s" % (self.group_member, self.role)
