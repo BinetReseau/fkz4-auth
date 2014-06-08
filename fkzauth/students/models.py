@@ -53,13 +53,13 @@ class Student(AbstractBaseUser):
     lastname = models.CharField(max_length=50, verbose_name=_("lastname"))
     email = models.EmailField(max_length=254, verbose_name=_("email"), unique=True)
     
-    #Fields needed to be compatible with the Admin interface
+    # Fields needed to be compatible with the Admin interface
     is_staff = models.BooleanField(default=False, verbose_name=_("staff member"))
     is_active = models.BooleanField(default=True, verbose_name=_("active account"))
 
     USERNAME_FIELD = 'email'
 
-# authentication details :
+    # Authentication details :
 
     promotions = models.ManyToManyField(Promotion, related_name='students', verbose_name="promotions")
 
@@ -67,7 +67,9 @@ class Student(AbstractBaseUser):
                     through='SchoolAuth', verbose_name=_("institutional emails for authentication"))
 
     objects = StudentManager()
+    # Groups
 
+    groups = models.ManyToManyField('groups.Group', related_name='student_groups', through='groups.GroupMember', verbose_name=_("Group memberships"))
     def get_full_name(self):
         # The user is identified by their email address
         return "%s %s <%s>" % (self.firstname, self.lastname, self.email)

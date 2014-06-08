@@ -44,6 +44,7 @@ INSTALLED_APPS = (
 # fkz app
     'fkzauth.schools',
     'fkzauth.students',
+    'fkzauth.groups',
 )
 
 
