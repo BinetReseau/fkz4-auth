@@ -1,10 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, include, url
 from rest_framework.urlpatterns import format_suffix_patterns
 
-from fkzauth.api import views
-
 urlpatterns = patterns('',
-    url(r'^student/(?P<pk>[0-9]+)/$', views.StudentDetails.as_view()),
+	url(r'^student/', include('fkzauth.api.student.urls', namespace='api')),
+	url(r'^group/', include('fkzauth.api.group.urls', namespace='api')),
 )
 
 urlpatterns = format_suffix_patterns(urlpatterns)
