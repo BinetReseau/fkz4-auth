@@ -15,8 +15,8 @@ class StudentManager(BaseUserManager):
         """
         student = self.model(
             firstname=firstname,
-            lastname=lastname,
-            email=self.normalize_email(email),
+            lastname=lastname
+           # email=self.normalize_email(email),
             )
         student.save(using=self._db)
         student.promotions.add(promotion)
@@ -49,10 +49,14 @@ class Student(AbstractBaseUser):
     """
     Class representing a Student, used for authentication.
     """
+    GENDERS=(("M",_("Man")),("F",_("Woman")))
     firstname = models.CharField(max_length=50, verbose_name=_("firstname"))
     lastname = models.CharField(max_length=50, verbose_name=_("lastname"))
     email = models.EmailField(max_length=254, verbose_name=_("email"), unique=True)
-    
+    birthdate = models.DateField(verbose_name=_("Birthday"),null=True,blank=True)
+    deathdate = models.DateField(verbose_name=_("Death Date"),null=True,blank=True)
+    isAlive = models.BooleanField(default=True)
+    gender = models.CharField(choices=GENDERS,max_length=4)
     # Fields needed to be compatible with the Admin interface
     is_staff = models.BooleanField(default=False, verbose_name=_("staff member"))
     is_active = models.BooleanField(default=True, verbose_name=_("active account"))

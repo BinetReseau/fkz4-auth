@@ -10,9 +10,9 @@ class Group(models.Model):
     """
     A group
     """
-    TYPE_CHOICES = ( ("bin", "binet"), ("grp", _("group")), ("spo", _("sport")), ("cls", _("class")) )
+    TYPE_CHOICES = (("bin", "binet"), ("grp", _("group")), ("spo", _("sport")), ("cls", _("class")))
     
-    name = models.CharField(max_length=80, verbose_name=_("Name"), )
+    name = models.CharField(max_length=80, verbose_name=_("Name"),)
     hruid = models.SlugField(max_length=20, unique=True, verbose_name=_("Unique slug identifier"))
     description = models.TextField(verbose_name=_("Description"))
     image = models.ImageField(upload_to="group_images/", verbose_name=_("Group image"), blank=True, null=True)
@@ -32,9 +32,9 @@ class GroupMember(models.Model):
     """
     A member of a group (used in a M2M relation)
     """
-    STATUS_CHOICES = ( ("sym", _("sympathizer")), ("mem", _("member")))
+    STATUS_CHOICES = (("sym", _("sympathizer")), ("mem", _("member")))
 
-    student = models.ForeignKey("students.Student",verbose_name=_("Student"))
+    student = models.ForeignKey("students.Student", verbose_name=_("Student"))
     group = models.ForeignKey("Group", verbose_name=_("Group"))
     status = models.CharField(max_length=3, choices=STATUS_CHOICES)
     visible = models.BooleanField(default=True)
@@ -53,7 +53,7 @@ class GroupRole(models.Model):
     The roles a member of a group can have
     """
 
-    ROLE_CHOICES = ( ("adm", _("administrator")), ("web", _("webmaster")), ("mail", _("mailing-list")), ("mem", _("member selection")), ("ann", _("announcements")))
+    ROLE_CHOICES = (("adm", _("administrator")), ("web", _("webmaster")), ("mail", _("mailing-list")), ("mem", _("member selection")), ("ann", _("announcements")))
 
     group_member = models.ForeignKey(GroupMember, verbose_name=_("Membership"), related_name="Roles")
     role = models.CharField(max_length=4, choices=ROLE_CHOICES, verbose_name=_("Role"))
