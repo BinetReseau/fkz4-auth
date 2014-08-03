@@ -46,7 +46,8 @@ INSTALLED_APPS = (
     'fkzauth.students',
     'fkzauth.groups',
     'fkzauth.directory',
-    'fkzauth.api'
+    'fkzauth.api',
+    'fkzauth.directory.rooms'
 )
 
 
