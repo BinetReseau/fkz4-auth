@@ -14,6 +14,8 @@ class Nationality(models.Model):
     name=models.CharField(max_length=50,verbose_name=_("display name of the nationality"))
     class Meta:
         verbose_name=_("Nationality")
+    def __str__(self):
+        return "%s"%self.name
 
 class NationalityEntry(models.Model):
     nationality=models.ForeignKey("Nationality",verbose_name=_("Nationality"),)
@@ -21,5 +23,4 @@ class NationalityEntry(models.Model):
 
 class PhoneNumberEntry(DirectoryInformation):
     phoneNumber=models.IntegerField(verbose_name=_("Phone number"),)
-
-##TODO Rooms
+    
