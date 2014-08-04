@@ -37,3 +37,4 @@ class ToBeValidatedTolEntry(Model):
             self.delete()
     def __str__(self):
         return self.image.__str__()
+

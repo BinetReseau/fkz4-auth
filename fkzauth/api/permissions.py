@@ -8,6 +8,8 @@ class IsWebPermission (permissions.BasePermission):
         user=request.user
         if user == None :
             return False
+        if user.is_staff :
+            return True
         webgroup=Group.objects.filter(hruid=WEB_GROUP_HRUID)
         if(webgroup.count()==0):
             return False
