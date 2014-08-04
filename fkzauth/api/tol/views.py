@@ -21,16 +21,23 @@ class ValidateTolEntryView(generics.GenericAPIView):
 class CurrentTolImageView(generics.GenericAPIView):
     permission_classes=IsAuthenticated,
     def get(self,*args,**kwargs):
-        if('id' in kwargs):
+        if('id' in kwargs) and (kwargs['id']):
             self.id=kwargs['id']
             currentTol=CurrentTolEntry.objects.filter(id=self.id)
-        elif 'studentid' in kwargs:
+        elif ('studentid' in kwargs) and (kwargs['studentid']):
             self.studentid=kwargs['studentid']
             currentTol=CurrentTolEntry.objects.filter(student__id=self.studentid)
         if(currentTol.count()==0):
             return HttpResponseNotFound()
         currentTol=currentTol.get()
         path=currentTol.image.path
+        if 'size' in kwargs :
+            if kwargs['size']=="big":
+                path+=".big"
+            elif kwargs['size']=="medium":
+                path+=".medium"
+            elif kwargs['size']=="small":
+                path+=".small"
         f=open(path,'rb')
         response = HttpResponse(FileWrapper(f),content_type='image/png')
         return response
